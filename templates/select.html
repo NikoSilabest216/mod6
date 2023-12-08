@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and viewport configuration -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Prediction</title>
+
+    <!-- External stylesheet link for styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome for icons (add this if not already included) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Inline styles for demonstration purposes -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        /* General styling for the contact section */
+        .contact-section {
+            background-color: #fff;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        /* Styling for the title box */
+        .title-box {
+            margin-bottom: 30px;
+        }
+
+        /* Styling for the section title */
+        .sec-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Styling for the form container */
+        .login100-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Styling for the image preview */
+        #image-preview {
+            width: 35%;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* Styling for the form container button */
+        .container-login100-form-btn {
+            margin-top: 20px;
+        }
+
+        /* Styling for the form input container */
+        .wrap-input100 {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Styling for the form input */
+        .input100 {
+            font-size: 16px;
+            padding: 10px;
+            width: calc(100% - 20px);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Styling for the form input focus effect */
+        .focus-input100::before {
+            content: '\f15c';
+            font-family: 'FontAwesome';
+            color: #999;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Styling for the form input symbol */
+        .symbol-input100 {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Styling for the form button */
+        .login100-form-btn {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        /* Styling for the form button hover effect */
+        .login100-form-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Contact section for image prediction -->
+<section class="contact-section" style="padding-top: 50px;" id="predict1">
+    <div class="container">
+        <!-- Title box for the section -->
+        <div class="title-box centred">
+            <div class="sec-title">Upload an Image to Make a Prediction</div>
+        </div>
+
+        <!-- Form for image prediction -->
+        <form class="login100-form validate-form" action="/predict" method="post" enctype="multipart/form-data">
+            <!-- Image preview area -->
+            <img id="image-preview" alt="image preview" src="/static/ahegao.jpg" />
+
+            <!-- Container for file input -->
+            <div class="container-login100-form-btn">
+                <div class="wrap-input100 validate-input" data-validate="Image file is required" id="input">
+                    <!-- File input element -->
+                    <input class="input100" id="image-source" name="file" onchange="previewImage();" type="file"
+                           alt="Input Image" accept="image/jpeg,image/jpg,image/png">
+                    <!-- Focus effect for input -->
+                    <span class="focus-input100"></span>
+                    <!-- Symbol for file input -->
+                    <span class="symbol-input100">
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Button to execute the prediction -->
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" type="submit">Execute</button>
+            </div>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and viewport configuration -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title of the HTML document -->
+    <title>Image Prediction</title>
+
+    <!-- Styles for the document -->
+    <style>
+        /* General styles... */
+
+        /* Styles specific to the result section */
+        #result {
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .title-box {
+            margin: 0;
+            padding: 5px 0;
+            background-color: #4caf50; /* Green background color */
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .inner-content {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            color: black;
+            text-transform: capitalize;
+            font-size: medium;
+            font-weight: bold;
+        }
+
+        #myProgress {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        #myBar {
+            width: 0;
+            height: 30px;
+            background-color: #4caf50; /* Green */
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .sidebar-content {
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Result section of the web page -->
+<section class="contact-section" id="result" style="padding-bottom: 50px;">
+    <div class="container">
+        <!-- Title box for the result section -->
+        <div class="title-box centred" style="padding-top: 5px; padding-bottom: 5px;">
+            <div class="sec-title">Prediction Result</div>
+        </div>
+
+        <!-- Content row containing prediction details and input image -->
+        <div class="row">
+            <!-- Content column for prediction details -->
+            <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                <!-- Inner content area with prediction information -->
+                <div class="inner-content">
+                    <div class="contact-form-area">
+                        <!-- Display predicted label, accuracy, and prediction time -->
+                        <p style="margin: unset; padding: none; color: black; text-transform: capitalize; font-size: medium; font-weight: bold;"> Predicted Label is: {{ labels[pred] }}</p>
+                        Accuracy : {{ (probs|max) }}% | Prediction Time : {{ (run_time) }} second
+                        <!-- Hidden input to store the maximum probability value -->
+                        <input type="hidden" id="probability" value={{(probs|max)}}>
+                        
+                        <!-- Progress bar to visualize the prediction probability -->
+                        <div id="myProgress">
+                            <div id="myBar">{{ (probs|max) }}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar column for displaying the input image -->
+            <div class="col-lg-4 col-md-12 col-sm-12 sidebar-column">
+                <div class="sidebar-content">
+                    <!-- Display the input image with specified styling -->
+                    <img src="{{ url_for('static', filename=img) }}" alt="" class="img-fluid" style="height:300px; width:300px;">
+                    <!-- Caption for the input image -->
+                    <p style="font-size:25px;text-align:center;">Input Image</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- JavaScript script for updating the progress bar width -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve elements from the DOM
+        var progressBar = document.getElementById("myBar");
+        var probabilityInput = document.getElementById("probability");
+        var probability = parseFloat(probabilityInput.value);
+
+        // Set the width of the progress bar based on the probability
+        progressBar.style.width = probability + "%";
+    });
+</script>
+
+</body>
+</html>
