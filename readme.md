@@ -15,7 +15,7 @@ This project utilizes the VGG-16 model for image classification. The dataset inc
      ```
    - Navigate to the project directory.
      ```bash
-     cd <repository-folder>
+     cd mod6
      ```
    - Install the required dependencies.
      ```bash
