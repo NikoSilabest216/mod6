@@ -1,0 +1,1 @@
+Taruh model pada folder ini, model dapat didownload pada tautan berikut
