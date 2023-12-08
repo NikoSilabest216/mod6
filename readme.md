@@ -11,7 +11,7 @@ This project utilizes the VGG-16 model for image classification. The dataset inc
 2. **How to Use:**
    - Clone the repository to your local machine.
      ```bash
-     git clone <repository-url>
+     git clone https://github.com/NikoSilabest216/mod6.git
      ```
    - Navigate to the project directory.
      ```bash
